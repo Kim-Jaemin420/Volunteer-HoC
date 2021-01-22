@@ -98,7 +98,7 @@ const MyPost = ({ AuthState, ListName, onChecking, modal, onConfirm, onCancel, o
             ))}
           </ul>
           {/* <Button onClick={onAllClick}>전체선택</Button> */}
-          <Button onClick={onRemoveClick}>선택삭제</Button>
+          <Button style={{marginTop: 20}} onClick={onRemoveClick}>선택삭제</Button>
           <AskRemoveModal 
             visible ={modal}
             onConfirm={onConfirm}
