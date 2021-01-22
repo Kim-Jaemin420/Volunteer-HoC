@@ -127,9 +127,19 @@ const Header = () => {
               로그아웃
             </Button>
           ) : (
-            <Button className="headerButton" as={Link} to="/login">
-              로그인
-            </Button>
+            <>
+              <Button className="headerButton" as={Link} to="/login">
+                로그인
+              </Button>
+              <Button
+                style={{ marginLeft: 10 }}
+                className="headerButton"
+                as={Link}
+                to="/register"
+              >
+                회원가입
+              </Button>
+            </>
           )}
         </div>
       </Wrapper>
