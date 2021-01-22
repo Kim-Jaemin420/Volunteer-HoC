@@ -119,21 +119,21 @@ const WritePageForm = ({ history, match, location }) => {
       });
       await console.log(PostState);
     })();
-    if (isLeave) {
-      setShouldConfirm(false);
-      return history.push('/');
-    }
-    const unblock = history.block(
-      '변경 사항이 저장되지 않습니다. 정말 나가시겠습니까?'
-    );
+    // if (isLeave) {
+    //   setShouldConfirm(false);
+    //   return history.push('/');
+    // }
+    // const unblock = history.block(
+    //   '변경 사항이 저장되지 않습니다. 정말 나가시겠습니까?'
+    // );
 
     // const unblock = history.block('정말 나가시겠습니까?');
     return () => {
       PostDispatch({
         type: POST_SUCCESS,
       });
-      unblock();
-      setModalOpen(true);
+      // unblock();
+      // setModalOpen(true);
     };
   }, [history, isLeave]);
 
