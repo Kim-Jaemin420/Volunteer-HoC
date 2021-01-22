@@ -12,7 +12,7 @@ import InputPage from '../common/Input';
 import Modal from '../common/Modal';
 import Responsive from '../common/Responsive';
 import AskAddressModal from '../post/AskAddressModal';
-
+import logo1 from '../images/logo1.png'
 // 로그인 폼을 보여주는 컴포넌트
 const HeaderBlock = styled.div`
   width: 100%;
@@ -33,10 +33,23 @@ const HeaderBlock = styled.div`
   align-items: center;
   justify-content: space-between;
   .logo {
-    font-size: 1.125rem;
-    letter-spacing: 2px;
-    color:#fff;
+    width:70px;
+    height:80px;
+    background:url(${logo1}) no-repeat;
+    background-size:contain;
+    background-position:center;
+    color:transparent;
     line-height:80px;
+    .a11y {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      margin: -1px;
+      clip-path: polygon(0 0, 0 0, 0 0);
+      clip: rect(0 0 0 0);
+      clip: rect(0, 0, 0, 0);
+    }
   }
   .right {
     display: flex;
@@ -138,7 +151,7 @@ const Register = ({ position, onChange, onSubmit, form, error, modalOpen, openMo
     <>
      <HeaderBlock>
       <Wrapper>
-        <div className="logo">심봉사</div>
+        <Link to="/"><div className="logo a11y">심봉사</div></Link>
         <div className="right">
             <Button className="headerButton" as="a" href="/login">
               로그인

@@ -120,7 +120,7 @@ const Header = () => {
         <Link to="/"><div className="logo a11y">심봉사</div></Link>
         <div className="right">
           <UserInfo>{AuthState.login && AuthState.login.username}</UserInfo>
-          {AuthState.login.username ? (
+          {AuthState.login && AuthState.login.username ? (
             <Button className="headerButton" onClick={onClick} as="a" href="/">
               로그아웃
             </Button>
