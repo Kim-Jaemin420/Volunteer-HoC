@@ -110,11 +110,6 @@ const WritePageForm = ({ history, match, location }) => {
       PostState={PostState}
       onChange={onChange}
       onSubmit={onSubmit}
-      modalOpen={modalOpen}
-      closeModal={closeModal}
-      handlePrompt={handlePrompt}
-      isLeave={isLeave}
-      setIsLeave={setIsLeave}
     />
   );
 };
