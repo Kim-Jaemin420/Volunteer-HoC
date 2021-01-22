@@ -12,15 +12,15 @@ import { login } from '../../lib/api/auth';
 import Button from './Button';
 import StyledContainer from './Container';
 import Responsive from './Responsive';
-import logo1 from '../images/logo1.png'
+import logo1 from '../images/logo1.png';
 const HeaderBlock = styled.div`
   width: 100%;
   height: 80px;
-  background:#03c75a;
+  background: #03c75a;
   box-shadow: 8px 2px 4px rgba(0, 0, 0, 0.08);
-  `;
-  
-  const Wrapper = styled(Responsive)`
+`;
+
+const Wrapper = styled(Responsive)`
   @font-face {
     font-family: 'BinggraeSamanco-Bold';
     src: url('https://github.com/projectnoonnu/noonfonts_20-10/blob/main/BinggraeSamanco-Bold.woff')
@@ -32,13 +32,13 @@ const HeaderBlock = styled.div`
   align-items: center;
   justify-content: space-between;
   .logo {
-    width:70px;
-    height:80px;
-    background:url(${logo1}) no-repeat;
-    background-size:contain;
-    background-position:center;
-    color:transparent;
-    line-height:80px;
+    width: 70px;
+    height: 80px;
+    background: url(${logo1}) no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: transparent;
+    line-height: 80px;
     .a11y {
       position: absolute;
       width: 1px;
@@ -54,19 +54,19 @@ const HeaderBlock = styled.div`
     display: flex;
     align-items: center;
   }
-  .headerButton{
-    padding:7px 25px;
-    border:none;
-    outline:none;
-    background:transparent;
-    border:3px solid #fff;
-    color:#fff;
-    border-radius:20px;
-    font-weight:700;
-    :hover{
-      background:#fff;
-      color:#03c75a;
-      border:3px solid #fff;
+  .headerButton {
+    padding: 7px 25px;
+    border: none;
+    outline: none;
+    background: transparent;
+    border: 3px solid #fff;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: 700;
+    :hover {
+      background: #fff;
+      color: #03c75a;
+      border: 3px solid #fff;
     }
   }
 `;
@@ -117,15 +117,17 @@ const Header = () => {
   return (
     <HeaderBlock>
       <Wrapper>
-        <Link to="/"><div className="logo a11y">심봉사</div></Link>
+        <Link to="/">
+          <div className="logo a11y">심봉사</div>
+        </Link>
         <div className="right">
           <UserInfo>{AuthState.login && AuthState.login.username}</UserInfo>
           {AuthState.login && AuthState.login.username ? (
-            <Button className="headerButton" onClick={onClick} as="a" href="/">
+            <Button className="headerButton" onClick={onClick} as={Link} to="/">
               로그아웃
             </Button>
           ) : (
-            <Button className="headerButton" as="a" href="/login">
+            <Button className="headerButton" as={Link} to="/login">
               로그인
             </Button>
           )}

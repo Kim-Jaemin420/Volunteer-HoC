@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import AskModal from '../common/AskModal';
 import Button from '../common/Button';
@@ -43,8 +44,8 @@ const StyledButton = styled(Button)`
     margin-left: 0.75rem;
   }
 `;
-const AskPostModal = ({ visible, onConfirm, onCancel }) => {
-  
+
+const AskPostModal = ({ visible, onCancel, onConfirm }) => {
     if (!visible) return null;
     return (
       <Fullscreen>

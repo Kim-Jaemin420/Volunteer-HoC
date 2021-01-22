@@ -138,6 +138,7 @@ const HeaderBlock = styled.div`
   background:#03c75a;
   box-shadow: 8px 2px 4px rgba(0, 0, 0, 0.08);
   `;
+  
   const Wrapper = styled(Responsive)`
   @font-face {
     font-family: 'BinggraeSamanco-Bold';
@@ -187,9 +188,11 @@ const HeaderBlock = styled.div`
     }
   }
 `;
+
 const Spacer = styled.div`
   height: 4rem;
 `;
+
 const Division = () => {
   const url = window.location.href;
   const parse = url.split('/');

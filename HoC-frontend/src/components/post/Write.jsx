@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect } from 'react';
 import styled from 'styled-components';
 import MapContainer from '../../lib/api/MapContainer';
 import StyledContainer from '../common/Container';
@@ -9,9 +9,8 @@ import { Prompt, withRouter } from 'react-router-dom';
 import Modal from '../common/Modal';
 import AskModal from '../common/AskModal';
 import AskPostModal from './AskPostModal';
-import {MdAssignment} from 'react-icons/md'
-import {RiProfileLine} from 'react-icons/ri'
 import {CgNotes} from 'react-icons/cg'
+// import Select from 'react-select';
 export const WritePageContainer = styled.div`
   position:relative;
   text-align:center;
@@ -170,7 +169,7 @@ export const StyledInput = styled.input`
     /* margin-top: 1rem; */
   }
 `;
-export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, closeModal, handlePrompt, isLeave }) => {
+export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, closeModal,history, handlePrompt, isLeave }) => {
   console.log("AuthState", AuthState);
   console.log(1);
   return (
@@ -289,6 +288,7 @@ export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, clo
                   <StyledSelect 
                   id="post-gender"
                   name="gender"
+                  
                   defaultValue={PostState.posts.gender}
                   onChange={onChange}>
                     <option value="">원하는 봉사자의 성별을 골라주세요</option>
@@ -312,10 +312,7 @@ export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, clo
     </div>
   </WritePageContainer>
       </StyledContainer>
-      <Prompt when={modalOpen} message={handlePrompt}>
-        <AskPostModal visible={modalOpen} isLeave={isLeave} set>
-      </AskPostModal>
-      </Prompt>
+      {history.location.pathname === '/write' && (<Prompt when={modalOpen} message={handlePrompt} />)}
     </>
   );
 };
