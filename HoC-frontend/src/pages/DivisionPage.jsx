@@ -158,6 +158,7 @@ const HeaderBlock = styled.div`
     background-position:center;
     color:transparent;
     line-height:80px;
+  }
     .a11y {
       position: absolute;
       width: 1px;

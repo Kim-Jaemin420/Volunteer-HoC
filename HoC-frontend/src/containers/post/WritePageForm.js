@@ -91,8 +91,8 @@ const WritePageForm = ({ history, match, location }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    post();
     setModalOpen(false);
+    post();
     history.push('/');
   };
 
@@ -135,7 +135,7 @@ const WritePageForm = ({ history, match, location }) => {
       unblock();
       setModalOpen(true);
     };
-  }, []);
+  }, [history, isLeave]);
 
   return (
     <Write

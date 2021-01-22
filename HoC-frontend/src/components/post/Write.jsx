@@ -312,7 +312,7 @@ export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, clo
     </div>
   </WritePageContainer>
       </StyledContainer>
-      {history.location.pathname === '/write' && (<Prompt when={modalOpen} message={handlePrompt} />)}
+      {/* {history.location.pathname === '/write' && (<Prompt when={modalOpen} message={handlePrompt} />)} */}
     </>
   );
 };

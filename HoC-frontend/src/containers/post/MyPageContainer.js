@@ -7,7 +7,7 @@ const arr = [];
 
 const MyPageContainer = ({ match, history }) => {
   const [modal, setModal] = useState(false);
-  const onRemoveClick = (e) => {
+  const onRemoveClick = e => {
     // 모달창 열기
     setModal(true);
   };
@@ -24,32 +24,31 @@ const MyPageContainer = ({ match, history }) => {
   const { AuthState, AuthDispatch } = useContext(Auth);
   const { ListState, ListDispatch } = useContext(List);
   const tokenID = localStorage.getItem('token');
-  const ListName = ListState.lists.filter(list=>list.user._id === tokenID)
-  
+  const ListName = ListState.lists.filter(list => list.user._id === tokenID);
+
   const onChecking = e => {
-    console.log(e.target.checked,8);
-    if(e.target.checked === true) {
+    if (e.target.checked === true) {
       arr.push(e.target.parentNode.id);
-    }
-    else{
+    } else {
       arr.splice(arr.indexOf(e.target.parentNode));
     }
-    console.log(arr,11);
-  }
+  };
 
   // const onAllClick = e => {
   //   console.log(e.target);
   // }
 
-  const AllRemove = async(e) => {
-    try{
-      arr.map(async ar=>await axios.delete(`http://localhost:3000/api/post/${ar}`))
+  const AllRemove = async e => {
+    try {
+      arr.map(
+        async ar => await axios.delete(`http://localhost:3000/api/post/${ar}`)
+      );
 
       const response = await axios.get('http://localhost:3000/api/posts');
       await ListDispatch({
         type: POST_SUCCESS,
-        data: response.data
-      })
+        data: response.data,
+      });
 
       await history.push('/mypage');
     } catch (e) {
@@ -57,27 +56,30 @@ const MyPageContainer = ({ match, history }) => {
     }
   };
 
+  const getPost = async () => {
+    const response = await axios.get('http://localhost:3000/api/posts');
+    await ListDispatch({
+      type: POST_SUCCESS,
+      data: response.data,
+    });
+  };
+
   useEffect(() => {
-    (async () => {
-      const response = await axios.get('http://localhost:3000/api/posts');
-      await ListDispatch({
-        type: POST_SUCCESS,
-        data: response.data,
-      });
-    })();
+    getPost();
   }, [ListDispatch]);
 
-  return <MyPost 
-    AuthState={AuthState} 
-    ListState={ListState} 
-    modal={modal}
-    ListName={ListName}
-    onRemoveClick={onRemoveClick} 
-    onConfirm={onConfirm} 
-    onCancel={onCancel}
-    onChecking={onChecking}
-    // onAllClick={onAllClick}
-    />;
+  return (
+    <MyPost
+      AuthState={AuthState}
+      ListState={ListState}
+      modal={modal}
+      ListName={ListName}
+      onRemoveClick={onRemoveClick}
+      onConfirm={onConfirm}
+      onCancel={onCancel}
+      onChecking={onChecking}
+    />
+  );
 };
 
 export default MyPageContainer;
