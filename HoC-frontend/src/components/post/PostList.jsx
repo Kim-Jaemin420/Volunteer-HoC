@@ -124,7 +124,7 @@ function PostList({ AuthState, ListState }) {
             {ListState.lists.map((list,index,thisList) => (
               <li key={list._id}>
                 <Link to={`/${list._id}`}>
-                <span>{thisList.length-index}</span>
+                  <span>{thisList.length-index}</span>
                   <span>{list.companyName}</span>
                   <span>{list.title}</span>
                   <span>{list.number}</span>
