@@ -5,12 +5,59 @@ import Button from '../../components/common/Button';
 import StyledContainer from '../common/Container';
 import { Link, withRouter } from 'react-router-dom';
 import AskRemoveModal from './AskRemoveModal';
-
+import {MdAssignment} from 'react-icons/md'
+import {FaEnvelopeOpenText} from 'react-icons/fa'
 const GlobalList = styled.div`
-  h1{
-    text-align:center;
-    font-size:2rem;
+  position:relative;
+  width: 100%;
+  min-height: 700px;
+  .selectRemoveButton{
+    position:absolute;
+    right:20px;
+    margin:20px 0;
   }
+  .postListIcon{
+  text-align:center;
+  font-size:2rem;
+  padding:20px 0;
+  }
+  .a11y {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip-path: polygon(0 0, 0 0, 0 0);
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  }
+  .title{
+  font-size: 1.7rem;
+  text-align:center;
+  font-size:2.2rem;
+  font-weight:700;
+  }
+  .titleSub{
+  width:300px;
+  font-size:1.1rem;
+  height:140px;
+  text-align:center;
+  position:relative;
+  line-height:100px;
+  margin:0 auto;
+  color:#03c75a;
+    ::before{
+    content:'';
+    position:absolute;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:25px;
+    height:2px;
+    background:#03c75a;
+    }
+}  
+  
   button{
     margin-right:30px;
     // background-color:yellow;
@@ -68,6 +115,8 @@ const GlobalList = styled.div`
   li span.ListTitle{
     text-align:center
   }
+
+  
 `;
 
 const MyPost = ({ AuthState, ListName, onChecking, modal, onConfirm, onCancel, onRemoveClick, onAllClick }) => {
@@ -76,7 +125,9 @@ const MyPost = ({ AuthState, ListName, onChecking, modal, onConfirm, onCancel, o
       <Header AuthState={AuthState} />
       <StyledContainer>
         <GlobalList>
-          <h1>{AuthState.login.username}(이/가)작성한 공고</h1>
+          <div className="postListIcon"><FaEnvelopeOpenText /></div>
+          <h1 className="title">{AuthState.login.username}(이/가)작성한 공고</h1>
+        <p className="titleSub">내가 쓴글</p>
           <ul>
             <li>
               <span className="ListCheckbox">체크박스</span>
@@ -98,7 +149,7 @@ const MyPost = ({ AuthState, ListName, onChecking, modal, onConfirm, onCancel, o
             ))}
           </ul>
           {/* <Button onClick={onAllClick}>전체선택</Button> */}
-          <Button onClick={onRemoveClick}>선택삭제</Button>
+          <Button className="selectRemoveButton" onClick={onRemoveClick}>선택삭제</Button>
           <AskRemoveModal 
             visible ={modal}
             onConfirm={onConfirm}
