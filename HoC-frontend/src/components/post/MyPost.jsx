@@ -150,7 +150,7 @@ const MyPost = ({ AuthState, ListName, onChecking, modal, onConfirm, onCancel, o
           </ul>
           {/* <Button onClick={onAllClick}>전체선택</Button> */}
 
-          <Button className="selectRemoveButton" style={{marginTop: 20}} onClick={onRemoveClick}>선택삭제</Button>
+          <Button className="selectRemoveButton" style={{marginTop: 20}} onClick={onRemoveClick}>전체삭제</Button>
 
           <AskRemoveModal 
             visible ={modal}
