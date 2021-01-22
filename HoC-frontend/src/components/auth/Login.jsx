@@ -29,6 +29,7 @@ export const AuthFormBlock = styled.div`
     clip-path: polygon(0 0, 0 0, 0 0);
     clip: rect(0 0 0 0);
     clip: rect(0, 0, 0, 0);
+  }
 `;
 
 const StyledInput = styled.input`

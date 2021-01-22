@@ -10,6 +10,8 @@ import { Prompt, withRouter } from 'react-router-dom';
 import Modal from '../common/Modal';
 import AskModal from '../common/AskModal';
 import AskPostModal from './AskPostModal';
+import { useState } from 'react';
+import { useEffect } from 'react';
 // import Select from 'react-select';
 export const WritePageContainer = styled.div`
   position:relative;
@@ -148,10 +150,9 @@ export const StyledInput = styled.input`
 `;
 
 
-export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, closeModal, handlePrompt, isLeave }) => {
-  console.log("AuthState", AuthState);
-  console.log(1);
-  
+export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, history, handlePrompt }) => {
+  console.log(PostState);
+
   return (
     <>
     <Header AuthState={AuthState} />
@@ -268,6 +269,7 @@ export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, clo
                   <StyledSelect 
                   id="post-gender"
                   name="gender"
+                  
                   defaultValue={PostState.posts.gender}
                   onChange={onChange}>
                     <option value="">원하는 봉사자의 성별을 골라주세요</option>
@@ -291,11 +293,7 @@ export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, clo
     </div>
   </WritePageContainer>
       </StyledContainer>
-      <Prompt when={modalOpen} message={handlePrompt}>
-        <AskPostModal visible={modalOpen} isLeave={isLeave} set>
-      </AskPostModal>
-
-      </Prompt>
+      {history.location.pathname === '/write' && (<Prompt when={modalOpen} message={handlePrompt} />)}
     </>
   );
 };

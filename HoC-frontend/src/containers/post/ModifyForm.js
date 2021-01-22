@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Auth, Post } from '../../contexts/store';
@@ -49,7 +49,6 @@ const ModifyForm = ({ history, match }) => {
     PostDispatch({
       type: POST_SUCCESS,
     });
-    console.log(PostState);
     history.push('/');
   };
 
@@ -95,6 +94,7 @@ const ModifyForm = ({ history, match }) => {
 
   useEffect(() => {
     getPost();
+    console.log(PostState);
     return () => {
       PostDispatch({
         type: POST_SUCCESS,

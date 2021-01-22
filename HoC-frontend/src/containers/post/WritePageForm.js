@@ -20,8 +20,32 @@ const WritePageForm = ({ history, match, location }) => {
   const { AuthState, AuthDispatch } = useContext(Auth);
   const { PostState, PostDispatch } = useContext(Post);
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isLeave, setIsLeave] = useState(false);
+  const [shouldConfirm, setShouldConfirm] = useState(false);
+  const [nextLocation, setNextLocation] = useState();
+
+  const onCancel = () => {
+    setIsLeave(false);
+    setModalOpen(false);
+    history.push('/write');
+  };
+
+  const onConfirm = () => {
+    setModalOpen(false);
+    history.push('/');
+  };
+
+  const handlePrompt = (location, action) => {
+    console.log(location, action);
+    if (!isLeave && shouldConfirm) {
+      setModalOpen(true);
+      return false;
+    }
+    return true;
+  };
+
   const post = async () => {
-    console.log(PostState);
     const {
       title,
       body,
@@ -68,6 +92,7 @@ const WritePageForm = ({ history, match, location }) => {
   const onSubmit = async e => {
     e.preventDefault();
     post();
+    setModalOpen(false);
     history.push('/');
   };
 
@@ -94,13 +119,21 @@ const WritePageForm = ({ history, match, location }) => {
       });
       await console.log(PostState);
     })();
+    if (isLeave) {
+      setShouldConfirm(false);
+      return history.push('/');
+    }
+    const unblock = history.block(
+      '변경 사항이 저장되지 않습니다. 정말 나가시겠습니까?'
+    );
 
     // const unblock = history.block('정말 나가시겠습니까?');
     return () => {
       PostDispatch({
         type: POST_SUCCESS,
       });
-      // unblock();
+      unblock();
+      setModalOpen(true);
     };
   }, []);
 
@@ -110,6 +143,14 @@ const WritePageForm = ({ history, match, location }) => {
       PostState={PostState}
       onChange={onChange}
       onSubmit={onSubmit}
+      modalOpen={modalOpen}
+      setModalOpen={setModalOpen}
+      isLeave={isLeave}
+      shouldConfirm={shouldConfirm}
+      setShouldConfirm={setShouldConfirm}
+      onConfirm={onConfirm}
+      onCancel={onCancel}
+      handlePrompt={handlePrompt}
     />
   );
 };

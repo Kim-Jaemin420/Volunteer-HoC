@@ -5,6 +5,7 @@ import Button from '../components/common/Button';
 import styled from 'styled-components';
 import Header from '../components/common/Header';
 import {MdAccountCircle,MdBusiness,MdPlayCircleFilled, MdAccountBalance} from 'react-icons/md'
+import Responsive from '../components/common/Responsive';
 const DivisionBlock = styled.div`
   width:100%;
   height:100vh;
@@ -138,13 +139,72 @@ const DivisionBlock = styled.div`
 
 `
 
+const HeaderBlock = styled.div`
+  width: 100%;
+  height: 80px;
+  background:#03c75a;
+  box-shadow: 8px 2px 4px rgba(0, 0, 0, 0.08);
+  `;
+  
+  const Wrapper = styled(Responsive)`
+  @font-face {
+    font-family: 'BinggraeSamanco-Bold';
+    src: url('https://github.com/projectnoonnu/noonfonts_20-10/blob/main/BinggraeSamanco-Bold.woff')
+      format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .logo {
+    font-size: 1.125rem;
+    letter-spacing: 2px;
+    color:#fff;
+    line-height:80px;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+  }
+  .headerButton{
+    padding:7px 25px;
+    border:none;
+    outline:none;
+    background:transparent;
+    border:3px solid #fff;
+    color:#fff;
+    border-radius:20px;
+    font-weight:700;
+    :hover{
+      background:#fff;
+      color:#03c75a;
+      border:3px solid #fff;
+    }
+  }
+`;
+
+const Spacer = styled.div`
+  height: 4rem;
+`;
+
 const Division = () => {
   const url = window.location.href;
   const parse = url.split('/');
   return (
     <>
       <DivisionBlock>
-      <Header />
+      <HeaderBlock>
+      <Wrapper>
+        <div className="logo">심봉사</div>
+        <div className="right">
+            <Button className="headerButton" as="a" href="/login">
+              로그인
+            </Button>
+        </div>
+      </Wrapper>
+      <Spacer />
+    </HeaderBlock>
         <div>
           <h1>{parse[parse.length - 1] === 'login' ? '로그인' : '회원가입'}</h1>
           <Button className="loginCompany" as={Link} to={`/${parse[parse.length - 1]}/company`}>
