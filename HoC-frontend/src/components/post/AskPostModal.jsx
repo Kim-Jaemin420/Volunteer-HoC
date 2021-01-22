@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import AskModal from '../common/AskModal';
 import Button from '../common/Button';
@@ -43,7 +44,23 @@ const StyledButton = styled(Button)`
     margin-left: 0.75rem;
   }
 `;
-const AskPostModal = ({ visible, onConfirm, onCancel }) => {
+
+const AskPostModal = ({ visible, isLeave, setIsLeave }) => {
+  const [modal, setModal] = useState(false);
+  const onRemoveClick = () => {
+    // 모달창 열기
+    setModal(true);
+  };
+  const onCancel = () => {
+    // 모달창 닫기
+    setModal(false);
+    
+  };
+  const onConfirm = () => {
+    // 삭제하기 + 모달창 닫기
+    setModal(false);
+  };
+
   
     if (!visible) return null;
     return (

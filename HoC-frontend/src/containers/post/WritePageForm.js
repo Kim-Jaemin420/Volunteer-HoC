@@ -20,19 +20,6 @@ const WritePageForm = ({ history, match, location }) => {
   const { AuthState, AuthDispatch } = useContext(Auth);
   const { PostState, PostDispatch } = useContext(Post);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [shouldConfirm, setShouldConfirm] = useState(false);
-  const [isLeave, setIsLeave] = useState(false);
-  const [lastLocation, setLastLocation] = useState(null);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-    history.push('/');
-  };
-
   const post = async () => {
     console.log(PostState);
     const {
@@ -84,15 +71,6 @@ const WritePageForm = ({ history, match, location }) => {
     history.push('/');
   };
 
-  const handlePrompt = location => {
-    if (!isLeave && shouldConfirm) {
-      // setNextLocation(location.pathname);
-      // setShowConfirmModal(true);
-      return false;
-    }
-    return true;
-  };
-
   useEffect(() => {
     (async () => {
       const response = await axios.get('/api/auth/check/company');
@@ -117,20 +95,14 @@ const WritePageForm = ({ history, match, location }) => {
       await console.log(PostState);
     })();
 
-    if (isLeave) {
-      setShouldConfirm(false);
-      // return history.push(nextLocation);
-    }
-
     // const unblock = history.block('정말 나가시겠습니까?');
     return () => {
-      setModalOpen(true);
       PostDispatch({
         type: POST_SUCCESS,
       });
       // unblock();
     };
-  }, [isLeave, history]);
+  }, []);
 
   return (
     <Write
@@ -141,6 +113,8 @@ const WritePageForm = ({ history, match, location }) => {
       modalOpen={modalOpen}
       closeModal={closeModal}
       handlePrompt={handlePrompt}
+      isLeave={isLeave}
+      setIsLeave={setIsLeave}
     />
   );
 };

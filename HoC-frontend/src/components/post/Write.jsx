@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import { StyledInput } from '../auth/Register';
 import MapContainer from '../../lib/api/MapContainer';
@@ -148,9 +148,41 @@ export const StyledInput = styled.input`
 `;
 
 
-export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, closeModal, handlePrompt }) => {
-  console.log("AuthState", AuthState);
-  console.log(1);
+export const Write = ({ PostState, AuthState, onChange, onSubmit, history }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [shouldConfirm, setShouldConfirm] = useState(false);
+  const [isLeave, setIsLeave] = useState(false);
+  const [nextLocation, setNextLocation] = useState(null);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    history.push('/');
+  };
+
+  const handlePrompt = location => {
+    if (!isLeave && shouldConfirm) {
+      setNextLocation(location.pathname);
+      setShouldConfirm(true);
+      return false;
+    }
+    return true;
+  };
+
+  if (isLeave) {
+    setShouldConfirm(false);
+    // return history.push(nextLocation);
+  }
+
+  useEffect(() => { 
+    return () => {
+      setModalOpen(true);
+
+    }
+  }, []);
   
   return (
     <>
@@ -291,9 +323,11 @@ export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, clo
     </div>
   </WritePageContainer>
       </StyledContainer>
-        <AskPostModal visible={modalOpen}>
-      <Prompt when={modalOpen} message={handlePrompt} />
+      <Prompt when={modalOpen} message={handlePrompt}>
+        <AskPostModal visible={modalOpen} isLeave={isLeave} setIsLeave={setIsLeave}>
       </AskPostModal>
+
+      </Prompt>
     </>
   );
 };
