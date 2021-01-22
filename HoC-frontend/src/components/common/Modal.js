@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-
+import palette from '../../lib/styles/palette';
 const Popup = styled.div`
   .modal {
     display: none;
@@ -51,14 +51,27 @@ const Popup = styled.div`
   }
   .modal > section > footer {
     padding: 12px 16px;
-    text-align: right;
+    /* text-align: center; */
+    margin-left: 290px;
   }
   .modal > section > footer button {
-    padding: 6px 12px;
+    /* padding: 6px 12px;
     color: #fff;
     background-color: #6c757d;
     border-radius: 5px;
-    font-size: 13px;
+    font-size: 13px; */
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.25rem 1rem;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    background: ${palette.green[4]};
+    &:hover {
+      background: ${palette.green[6]};
+    }
   }
   .modal.openModal {
     display: flex;
@@ -85,11 +98,9 @@ const Popup = styled.div`
     }
   }
 `;
-
 const Modal = props => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, header } = props;
-
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <Popup>
@@ -107,7 +118,7 @@ const Modal = props => {
             <footer>
               <button className="close" onClick={close}>
                 {' '}
-                close{' '}
+                닫기{' '}
               </button>
             </footer>
           </section>
@@ -116,5 +127,4 @@ const Modal = props => {
     </Popup>
   );
 };
-
 export default Modal;
