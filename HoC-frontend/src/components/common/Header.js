@@ -131,6 +131,14 @@ const Header = () => {
               로그인
             </Button>
           )}
+          <Button
+            style={{ marginLeft: 10 }}
+            className="headerButton"
+            as={Link}
+            to="/register"
+          >
+            회원가입
+          </Button>
         </div>
       </Wrapper>
       <Spacer />
