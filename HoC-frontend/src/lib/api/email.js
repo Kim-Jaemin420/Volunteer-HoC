@@ -17,7 +17,6 @@ export default function ContactUs({ post, closeModal, AuthState }) {
       color: ${palette.gray[6]};
     }
     #user-email {
-      font-family: 'MapoFlowerIsland';
       font-size: 1rem;
       border: none;
       background: #f8f8f8;
@@ -27,7 +26,6 @@ export default function ContactUs({ post, closeModal, AuthState }) {
       /* width: 100%; */
     }
     #user-message {
-      font-family: 'MapoFlowerIsland';
       font-size: 1rem;
       position: relative;
       resize: none;
@@ -42,11 +40,10 @@ export default function ContactUs({ post, closeModal, AuthState }) {
     .user-submit {
       /* float:right; */
       position: absolute;
-      bottom: -60px;
+      bottom: -55px;
       right: 0;
       border: none;
       border-radius: 4px;
-      font-size: 1rem;
       font-weight: bold;
       padding: 0.25rem 1rem;
       color: white;

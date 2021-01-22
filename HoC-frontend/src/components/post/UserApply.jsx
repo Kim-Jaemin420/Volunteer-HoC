@@ -16,7 +16,7 @@ import ContactUs from '../../lib/api/email';
 
 const UserApplyPageContainer = styled.div`
   position:relative;
-  font-family: 'MapoFlowerIsland';
+  font-family: 'Noto Sans KR';
   /* background-color: skyblue; */
   width: 100%;
   min-height: 700px;
@@ -31,7 +31,6 @@ const UserApplyPageContainer = styled.div`
   clip: rect(0, 0, 0, 0);
 }
 .title{
-  font-family: 'Cafe24Oneprettynight';
   font-size: 1.7rem;
   text-align:center;
 }
@@ -59,7 +58,6 @@ const UserApplyPageContainer = styled.div`
     height:100%; */
   }
   .user-content-right dl{
-    font-family: 'MapoFlowerIsland';
     font-size: 1rem;
     /* text-align:center; */
     display:flex;
@@ -79,6 +77,9 @@ const UserApplyPageContainer = styled.div`
 
     align-items:center;
   }
+  dd{
+    padding-left:10px;
+  }
   .user-content-right dd {
     background: #f8f8f8;
     /* height:50px; */
@@ -95,7 +96,6 @@ const UserApplyPageContainer = styled.div`
   }
   .btn-edit,
   .btn-delete {
-    font-family: 'MapoFlowerIsland';
     float:right;
   }
   .btn-edit {

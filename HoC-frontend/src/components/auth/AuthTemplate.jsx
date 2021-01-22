@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
+import logo1 from '../images/logo1.png'
 
 // 회원가입, 로그인 페이지의 레이아웃 담당 컴포넌트
 
@@ -25,6 +26,9 @@ const WhiteBox = styled.div`
     text-align: center;
     font-weight: bold;
     letter-spacing: 2px;
+    font-size:1.3rem;
+    color:#03c75a;
+    background-size:contain;
   }
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
   padding: 2rem;
@@ -38,7 +42,7 @@ const AuthTemplate = ({ children }) => {
     <AuthTemplateBlock>
       <WhiteBox>
         <div className="logo-area">
-          <Link to="/">心봉사</Link>
+          <Link to="/">심봉사</Link>
         </div>
       {children}
       </WhiteBox>
