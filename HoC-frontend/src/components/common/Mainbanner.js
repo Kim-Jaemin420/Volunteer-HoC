@@ -26,22 +26,26 @@ const MainbannerBlock = styled.div`
       :nth-child(1){
         position:relative;
         color:#fff;
-        width:350px;
-        font-size:2rem;
-        padding-top:200px;
-        padding-bottom:20px;
+        width:400px;
+        font-size:2.1rem;
+        padding-top:180px;
+        padding-bottom:30px;
         z-index:100;
         margin:0 auto;
         text-align:center;
-        line-height:45px;
+        line-height:50px;
+        letter-spacing:0.2rem ;
       }
-    
+      
       :nth-child(2){
         font-size:1rem;
         position:relative;
         color:#fff;
         z-index:100;
+        font-size:0.9rem;
+        opacity:0.9;
         text-align:center;
+        letter-spacing:0.1rem ;
       }
     }
     .buttonContainer{

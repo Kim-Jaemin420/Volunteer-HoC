@@ -92,7 +92,6 @@ text-align:center;
     text-align:center;
     font-size:2rem;
     padding:20px 0;
-
   }
   `;
   const PostListHeader = styled.div`

@@ -1,6 +1,5 @@
-import React from 'react';
+import React,{useState,useEffect } from 'react';
 import styled from 'styled-components';
-// import { StyledInput } from '../auth/Register';
 import MapContainer from '../../lib/api/MapContainer';
 import StyledContainer from '../common/Container';
 import palette from '../../lib/styles/palette';
@@ -10,14 +9,19 @@ import { Prompt, withRouter } from 'react-router-dom';
 import Modal from '../common/Modal';
 import AskModal from '../common/AskModal';
 import AskPostModal from './AskPostModal';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import {CgNotes} from 'react-icons/cg'
 // import Select from 'react-select';
 export const WritePageContainer = styled.div`
   position:relative;
-  font-family: 'MapoFlowerIsland';
+  text-align:center;
+  // font-family: 'MapoFlowerIsland';
   width: 100%;
   min-height: 700px;
+  .postListIcon{
+    text-align:center;
+    font-size:2rem;
+    padding:20px 0;
+  }
 .a11y {
   position: absolute;
   width: 1px;
@@ -29,12 +33,35 @@ export const WritePageContainer = styled.div`
   clip: rect(0, 0, 0, 0);
 }
 .title{
-  font-family: 'Cafe24Oneprettynight';
+  // font-family: 'Cafe24Oneprettynight';
   font-size: 1.7rem;
   text-align:center;
+  font-size:2.2rem;
+  font-weight:700;
 }
+.titleSub{
+  width:300px;
+  font-size:1.1rem;
+  height:140px;
+  text-align:center;
+  position:relative;
+  line-height:100px;
+  margin:0 auto;
+  color:#03c75a;
+::before{
+  content:'';
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:25px;
+  height:2px;
+  background:#03c75a;
+}
+}
+
 #post-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding:10px;
 }
 .post-content-wrap {
@@ -72,7 +99,6 @@ export const WritePageContainer = styled.div`
   color: rgb(118,118,118);
   width:80%;
 }
-
 .period-wrap {
   width:100%;
   display: flex;
@@ -96,8 +122,6 @@ export const WritePageContainer = styled.div`
   float:right;
   margin-left:5px;
 }
-
-
 `
 export const StyledSelect = styled.select`
   /* font-size: 1rem;
@@ -106,7 +130,6 @@ export const StyledSelect = styled.select`
   padding-bottom: 0.5rem;
   outline: none;
   color: rgb(118,118,118); */
-  
   /* width: 100%; */
   /* &:focus {
     color: $oc-teal-7;
@@ -117,7 +140,7 @@ export const StyledSelect = styled.select`
   } */
 `;
 export const StyledTextarea = styled.textarea`
-  font-family: 'MapoFlowerIsland';
+  // font-family: 'MapoFlowerIsland';
   font-size: 1.5rem;
   width:100%;
   min-height: 500px;
@@ -129,7 +152,7 @@ export const StyledTextarea = styled.textarea`
   padding: 10px;
 `;
 export const StyledInput = styled.input`
-  font-family: 'MapoFlowerIsland';
+  // font-family: 'MapoFlowerIsland';
   font-size: 1rem;
   border: none;
   background: #f8f8f8;
@@ -138,29 +161,26 @@ export const StyledInput = styled.input`
   margin-bottom: 0.5rem;
   outline: none;
   width: 100%;
-
   &:focus {
     color: $oc-teal-7;
     /* border-bottom: 1px solid ${palette.gray[7]}; */
   }
-
   & + & {
     /* margin-top: 1rem; */
   }
 `;
-
-
-export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, history, handlePrompt }) => {
-  console.log(PostState);
-
+export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, closeModal,history, handlePrompt, isLeave }) => {
+  console.log("AuthState", AuthState);
+  console.log(1);
   return (
     <>
     <Header AuthState={AuthState} />
     <StyledContainer>
     <WritePageContainer>
     <div>
-        <h1 className="a11y">모집 공고 등록 페이지</h1>
-        <h2 className="title">모집 공고 등록</h2>
+        <div className="postListIcon"><CgNotes /></div>
+        <h1 className="title">모집 공고 등록</h1>
+        <p className="titleSub">봉사지원자 모집 공고 등록 하기</p>
         <form onSubmit={onSubmit}>
           <legend>
             <fieldset>
@@ -263,8 +283,7 @@ export const Write = ({ PostState, AuthState, onChange, onSubmit, modalOpen, his
                     <option value="8">8</option>
                     <option value="9">9</option>
                     <option value="10">10</option>
-                      </StyledSelect>
-                      
+                    </StyledSelect>
                   <label htmlFor="post-gender">성별</label>
                   <StyledSelect 
                   id="post-gender"

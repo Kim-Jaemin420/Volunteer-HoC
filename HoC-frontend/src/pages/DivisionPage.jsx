@@ -5,7 +5,9 @@ import Button from '../components/common/Button';
 import styled from 'styled-components';
 import Header from '../components/common/Header';
 import {MdAccountCircle,MdBusiness,MdPlayCircleFilled, MdAccountBalance} from 'react-icons/md'
+import {RiBuildingLine,RiAccountBoxLine} from 'react-icons/ri'
 import Responsive from '../components/common/Responsive';
+import logo1 from '../components/images/logo1.png'
 const DivisionBlock = styled.div`
   width:100%;
   height:100vh;
@@ -24,9 +26,7 @@ const DivisionBlock = styled.div`
     .headerButton{
       display:none;
     }
-    
     h1{
-    
       font-size:1rem;
       line-height:80px;
       border-radius:60px;
@@ -38,7 +38,6 @@ const DivisionBlock = styled.div`
       background:transparent;
       color: #03c75a;
       position:relative;
-      
       &::before {
         background: linear-gradient(170deg, rgb(3, 199, 90), rgb(2, 180, 81));
         content:'';
@@ -58,7 +57,6 @@ const DivisionBlock = styled.div`
         right:-200px;
       }
     }
-
   .loginCompany,.loginPerson{
     display:inline-block;
     width:260px;
@@ -73,7 +71,6 @@ const DivisionBlock = styled.div`
     position:relative;
     border-bottom:15px solid #03c75a;
     box-shadow: 2px 0px 10px 5px rgba(0, 0, 0, 0.08);
-    
     span:nth-child(1){
       display:block;
       border-radius:200px;
@@ -126,7 +123,6 @@ const DivisionBlock = styled.div`
           opacity:1;
         }
       }
-
       span:nth-child(3){
       color:#fff;
       }
@@ -135,10 +131,7 @@ const DivisionBlock = styled.div`
       }
     }
   }
-  
-
 `
-
 const HeaderBlock = styled.div`
   width: 100%;
   height: 80px;
@@ -158,11 +151,23 @@ const HeaderBlock = styled.div`
   align-items: center;
   justify-content: space-between;
   .logo {
-    font-size: 1.125rem;
-    letter-spacing: 2px;
-    color:#fff;
+    width:70px;
+    height:80px;
+    background:url(${logo1}) no-repeat;
+    background-size:contain;
+    background-position:center;
+    color:transparent;
     line-height:80px;
-  }
+    .a11y {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      margin: -1px;
+      clip-path: polygon(0 0, 0 0, 0 0);
+      clip: rect(0 0 0 0);
+      clip: rect(0, 0, 0, 0);
+    }
   .right {
     display: flex;
     align-items: center;
@@ -196,7 +201,7 @@ const Division = () => {
       <DivisionBlock>
       <HeaderBlock>
       <Wrapper>
-        <div className="logo">심봉사</div>
+        <Link to="/"><div className="logo a11y">심봉사</div></Link>
         <div className="right">
             <Button className="headerButton" as="a" href="/login">
               로그인
@@ -209,7 +214,7 @@ const Division = () => {
           <h1>{parse[parse.length - 1] === 'login' ? '로그인' : '회원가입'}</h1>
           <Button className="loginCompany" as={Link} to={`/${parse[parse.length - 1]}/company`}>
             <span>
-              <MdBusiness className="Mdicon"/>
+              <RiBuildingLine className="Mdicon"/>
               {/* <MdGroupAdd className="Mdicon"/> */}
               {/* <MdSupervisorAccount className="Mdicon"/> */}
             </span>
@@ -218,7 +223,7 @@ const Division = () => {
           </Button>
           <Button className="loginPerson"as={Link} to={`/${parse[parse.length - 1]}/person`}>
             <span>
-              <MdAccountCircle className="Mdicon"/>
+              <RiAccountBoxLine className="Mdicon"/>
             </span>
             <p>봉사지원자이신가요?</p>
             <span>개인으로 {parse[parse.length - 1] === 'login' ? '로그인' : '회원가입'}하기<MdPlayCircleFilled/></span>
@@ -228,5 +233,4 @@ const Division = () => {
     </>
   );
 };
-
 export default Division;
