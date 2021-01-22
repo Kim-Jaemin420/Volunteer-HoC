@@ -55,14 +55,11 @@ const Popup = styled.div`
     margin-left: 290px;
   }
   .modal > section > footer button {
-    /* padding: 6px 12px;
     color: #fff;
     background-color: #6c757d;
     border-radius: 5px;
-    font-size: 13px; */
     border: none;
     border-radius: 4px;
-    font-size: 1rem;
     font-weight: bold;
     padding: 0.25rem 1rem;
     color: white;

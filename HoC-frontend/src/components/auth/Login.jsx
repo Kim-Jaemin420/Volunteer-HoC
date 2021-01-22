@@ -36,6 +36,7 @@ const StyledInput = styled.input`
   font-size: 1rem;
   border-radius: 0px;
   border : 1px solid ${palette.gray[7]};
+  border : 1px solid #ccc;
   padding: 0.5rem;
   outline: none;
   width: 100%;
@@ -61,6 +62,7 @@ const Footer = styled.div`
   margin-top: 2rem;
   text-align: right;
   a {
+    padding:2px;
     color: ${palette.gray[6]};
     text-decoration: underline;
     &:hover {

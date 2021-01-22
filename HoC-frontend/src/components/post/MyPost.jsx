@@ -127,7 +127,7 @@ const MyPost = ({ AuthState, ListName, onChecking, modal, onConfirm, onCancel, o
         <GlobalList>
           <div className="postListIcon"><FaEnvelopeOpenText /></div>
           <h1 className="title">{AuthState.login.username}(이/가)작성한 공고</h1>
-        <p className="titleSub">내가 쓴글</p>
+        <p className="titleSub">내가 쓴글 보기</p>
           <ul>
             <li>
               <span className="ListCheckbox">체크박스</span>
